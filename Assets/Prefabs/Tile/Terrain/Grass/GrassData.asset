@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c77336c2e473948afee2c338dfd906, type: 3}
+  m_Name: GrassData
+  m_EditorClassIdentifier: 
+  terrainBase: {fileID: 5959846450789051778, guid: d0c1c689e6250b94bb621c73ebf92a55,
+    type: 3}
+  terrainContent: {fileID: 6854199836526247296, guid: 9f2c6bd59526b7c49a1a4df7fe3412bb,
+    type: 3}
