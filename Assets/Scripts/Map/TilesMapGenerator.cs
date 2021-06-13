@@ -6,7 +6,7 @@ public class TilesMapGenerator : MonoBehaviour
     [SerializeField] private int width;
     [SerializeField] private int height;
 
-    [SerializeField] private List<TileTerrainData>  tileTerrains;
+    [SerializeField] private List<Transform> tiles;
 
     private void Awake()
     {
@@ -23,21 +23,12 @@ public class TilesMapGenerator : MonoBehaviour
         {
             for (int i1 = 0; i1 < height; i1++)
             {
-                Transform tile = CreateTile(tileTerrains.Random());
+                Transform tile = Instantiate(tiles.Random());
                 tile.position = start + new Vector3(i, 0, i1);
+                tile.SetParent(map);
             }
         }
 
         return map;
-    }
-
-    private Transform CreateTile(TileTerrainData terrainData)
-    {
-        Transform tile = new GameObject("Tile").transform;
-
-        Transform tileBase = Instantiate(terrainData.TileBase, tile);
-        Transform tileContent = Instantiate(terrainData.TileContent, tile);
-
-        return tile;
     }
 }
