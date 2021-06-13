@@ -1,10 +1,19 @@
 using UnityEngine;
 
-[RequireComponent(typeof(TileData))]
 public class TileOwnerData : MonoBehaviour
 {
     [SerializeField] private PlayerData owner;
-    [SerializeField] private MeshRenderer ownerMarker;
+    [SerializeField] private TileOwnerMarker ownerMarker;
+
+    private void Start()
+    {
+       
+    }
+
+    private void Update()
+    {
+        ownerMarker.SetColor(owner.Color);    
+    }
 
     public PlayerData Owner
     {
@@ -16,7 +25,7 @@ public class TileOwnerData : MonoBehaviour
         set
         {
             owner = value;
-            ownerMarker.material.color
+            ownerMarker.SetColor(owner.Color);
         }
     }
 }
