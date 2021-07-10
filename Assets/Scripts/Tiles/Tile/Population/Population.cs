@@ -5,7 +5,7 @@ using UnityEngine.Events;
 [Serializable]
 public class Population
 {
-    private float _amount;
+    [SerializeField] private float _amount;
     public float Amount 
     {
         get => _amount; 
@@ -21,6 +21,12 @@ public class Population
     public void Birth(float amount)
     {
         _amount += amount;
+
+        if(float.MaxValue - _amount <= amount)
+        {
+            _amount = float.MaxValue;
+        }
+
         PopulationChanged.Invoke(_amount);
     }
 

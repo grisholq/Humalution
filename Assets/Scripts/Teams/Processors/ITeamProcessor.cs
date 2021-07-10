@@ -1,4 +1,4 @@
 public interface ITeamProcessor
 {
-    void ProcessTeam(ITeam team);
+    void ProcessTeam(Team team);
 }

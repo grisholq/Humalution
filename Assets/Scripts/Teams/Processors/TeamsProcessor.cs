@@ -12,17 +12,18 @@ public class TeamsProcessor : MonoBehaviour
     {
         _teams = GetComponent<Teams>();
         _teamProcessors = new List<ITeamProcessor>(GetComponents<ITeamProcessor>());
-        Debug.Log(_teamProcessors.Count);
     }
 
     private void Update()
     {
-        UpdateTeams();
+        ProcessTeams();
     }
 
-    private void UpdateTeams()
+    private void ProcessTeams()
     {
-        foreach (var team in _teams.GetTeams())
+        List<Team> teams = _teams.GetTeamsList();
+
+        foreach (var team in teams)
         {
             foreach (var processor in _teamProcessors)
             {

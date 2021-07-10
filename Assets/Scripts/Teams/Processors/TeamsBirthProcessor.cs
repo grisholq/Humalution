@@ -1,18 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class TeamsBirthProcessor : MonoBehaviour
+public class TeamsBirthProcessor : MonoBehaviour, ITeamProcessor
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float birthCoefficient;
+
+    public void ProcessTeam(Team team)
     {
-        
+        foreach (var tile in team.Land.Tiles)
+        {
+            CalculateTeamBirth(team);   
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void CalculateTeamBirth(Team team)
     {
-        
+        foreach (var tile in team.Land.Tiles)
+        {
+            CalculateTileBirth(tile, team.Parameters.MedicineEfficience);
+        }
+    }
+
+    private void CalculateTileBirth(Tile tile, float medicineEfficiency)
+    {
+        float birthMultiplier = medicineEfficiency * tile.Enviroment.Fertility * birthCoefficient;
+        tile.Population.Birth(tile.Population.Amount * birthMultiplier);   
     }
 }

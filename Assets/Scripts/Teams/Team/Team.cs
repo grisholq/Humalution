@@ -1,15 +1,15 @@
 using UnityEngine;
 
-public class Team : MonoBehaviour, ITeam
+public class Team : MonoBehaviour, IOwner
 {
     [SerializeField] private Tile[] _startingTiles;
     [SerializeField] private Color _color;
 
     private Land _land;
 
-    [field: SerializeField] public TeamParameters Parameters { get; }
+    [field: SerializeField] public TeamParameters Parameters { get; private set; }
 
-    public ILand Land => _land;
+    public Land Land => _land;
 
     public Color Color
     { 

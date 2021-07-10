@@ -4,10 +4,8 @@ using System.Collections.Generic;
 
 public class Tile : MonoBehaviour, IPopulated, IOwned
 {
-    [SerializeField] private float _startingPopulation;
-
     [field: SerializeField] public Population Population { get; set; }
-    [field: SerializeField] public EnvironmentParameters EnvironmentParameters { get; set; }
+    [field: SerializeField] public Environment Enviroment { get; private set; }
     [field: SerializeField] public List<Tile> Neighbors { get; set; }
 
     [SerializeField] private UnityEvent<IOwner> OwnerChanged;
@@ -31,7 +29,6 @@ public class Tile : MonoBehaviour, IPopulated, IOwned
     private void Start()
     {
         Owner = new NullOwner();
-        Population.Amount = _startingPopulation;
     }
 
     private void CallOwnerChanged(IOwner owner)

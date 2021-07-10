@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-public class Land : ILand
+public class Land : IOwned
 {
     private IOwner _owner;
     private LinkedList<Tile> _tiles;

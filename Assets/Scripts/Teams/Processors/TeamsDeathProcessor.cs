@@ -1,18 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+  using UnityEngine;
 
-public class TeamsDeathProcessor : MonoBehaviour
+public class TeamsDeathProcessor : MonoBehaviour, ITeamProcessor
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float deathCoefficient;
+    [SerializeField] private float illnesPerPopulation;
+
+    public void ProcessTeam(Team team)
     {
-        
+        foreach (var tile in team.Land.Tiles)
+        {
+            CalculateTeamDeath(team);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void CalculateTeamDeath(Team team)
     {
-        
+        foreach (var tile in team.Land.Tiles)
+        {
+            CalculateTileDeath(tile, team.Parameters.MedicineEfficience);
+        }
+    }
+
+    private void CalculateTileDeath(Tile tile, float medicineEfficiency)
+    {
+        float population = tile.Population.Amount;
+        float deeathMultiplier = tile.Enviroment.IllnessRate + illnesPerPopulation * population;
+        Mathf.Min(deeathMultiplier, 1);
+
+        tile.Population.Die(tile.Population.Amount * deeathMultiplier);
     }
 }
