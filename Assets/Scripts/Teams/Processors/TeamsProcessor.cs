@@ -11,7 +11,14 @@ public class TeamsProcessor : MonoBehaviour
     private void Awake()
     {
         _teams = GetComponent<Teams>();
-        _teamProcessors = new List<ITeamProcessor>(GetComponents<ITeamProcessor>());
+    }
+
+    private void Start()
+    {
+        _teamProcessors = new List<ITeamProcessor>();
+        _teamProcessors.Add(new TeamPopulator());
+        _teamProcessors.Add(new TeamExpansioner());
+        _teamProcessors.Add(new TeamWarProcessor());
     }
 
     private void Update()
@@ -21,14 +28,19 @@ public class TeamsProcessor : MonoBehaviour
 
     private void ProcessTeams()
     {
-        List<Team> teams = _teams.GetTeamsList();
+        List<Team> teams = _teams.GetTeams();
 
         foreach (var team in teams)
         {
-            foreach (var processor in _teamProcessors)
-            {
-                processor.ProcessTeam(team);
-            }
+            ProcessTeam(team);
+        }
+    }
+
+    private void ProcessTeam(Team team)
+    {
+        foreach (var processor in _teamProcessors)
+        {
+            processor.ProcessTeam(team);
         }
     }
 }

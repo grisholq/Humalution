@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657755, g: 0.4964127, b: 0.57481825, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -252,6 +252,55 @@ Transform:
   m_Father: {fileID: 519090809}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &138462669
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 138462670}
+  - component: {fileID: 138462671}
+  m_Layer: 0
+  m_Name: Enemy1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &138462670
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138462669}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1476766021}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &138462671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138462669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 208e969ac84879146a8ff9ca554f2613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tiles: []
+  _color: {r: 1, g: 0.28627455, b: 0.29363728, a: 1}
+  <Parameters>k__BackingField:
+    <Medicine>k__BackingField: 0.1
+    <Expansion>k__BackingField: 0.1
+    <War>k__BackingField: 0.1
 --- !u!1 &154572484
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,7 +355,7 @@ GameObject:
   - component: {fileID: 160077397}
   - component: {fileID: 160077396}
   m_Layer: 0
-  m_Name: PlayerTeam
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -324,12 +373,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 208e969ac84879146a8ff9ca554f2613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startingTiles:
+  _tiles:
   - {fileID: 4941048589378847807}
   _color: {r: 0.28773582, g: 0.6368791, b: 1, a: 1}
   <Parameters>k__BackingField:
-    MedicineEfficience: 1
-    ExpansionEfficience: 1
+    <Medicine>k__BackingField: 1
+    <Expansion>k__BackingField: 1
+    <War>k__BackingField: 1
 --- !u!4 &160077397
 Transform:
   m_ObjectHideFlags: 0
@@ -604,6 +654,7 @@ GameObject:
   m_Component:
   - component: {fileID: 854325509}
   - component: {fileID: 854325510}
+  - component: {fileID: 854325511}
   m_Layer: 0
   m_Name: View
   m_TagString: Untagged
@@ -638,11 +689,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 854325508}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13ca33ebd4caa5247bdbf06c9b723c7f, type: 3}
+  m_Script: {fileID: 11500000, guid: 058ac8e32acca334bb41a9f7cf486eef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  population: {fileID: 7752528724213928984}
-  ownerMarker: {fileID: 6140679087160541348}
+  _population: {fileID: 7752528724213928984}
+--- !u!114 &854325511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854325508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 387574410877232478dbd44e553055fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ownerMarker: {fileID: 6140679087160541348}
 --- !u!1 &1171721445
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,8 +760,6 @@ GameObject:
   - component: {fileID: 1476766021}
   - component: {fileID: 1476766023}
   - component: {fileID: 1476766025}
-  - component: {fileID: 1476766022}
-  - component: {fileID: 1476766024}
   m_Layer: 0
   m_Name: Teams
   m_TagString: Untagged
@@ -718,22 +779,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 160077397}
+  - {fileID: 138462670}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1476766022
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1476766020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bad231628fa090f41a5e79b87c10e548, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  birthCoefficient: 0.0007
 --- !u!114 &1476766023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -746,21 +795,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db320ade905e23d45aaf8e28a2df96ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _teamsParent: {fileID: 1476766021}
---- !u!114 &1476766024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1476766020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03270f70d27c48d4694bd2f8e667d525, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  deathCoefficient: 0.1
-  illnesPerPopulation: 0.01
 --- !u!114 &1476766025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2254,7 +2288,7 @@ GameObject:
   - component: {fileID: 4694811551435739266}
   - component: {fileID: 7752528724213928984}
   m_Layer: 0
-  m_Name: PopulationText
+  m_Name: PopulationView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3717,42 +3751,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b53e31e74206234c9854ab6b90c4851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Population>k__BackingField:
-    _amount: 10
-    PopulationChanged:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 854325510}
-          m_TargetAssemblyTypeName: TileView, Assembly-CSharp
-          m_MethodName: SetPopulationAmount
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  <Enviroment>k__BackingField:
-    <Fertility>k__BackingField: 1
-    <IllnessRate>k__BackingField: 0
+  _startingPopulation: 10
+  <Fertility>k__BackingField: 1
+  <IllnesRate>k__BackingField: 0
   <Neighbors>k__BackingField: []
-  OwnerChanged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 854325510}
-        m_TargetAssemblyTypeName: TileView, Assembly-CSharp
-        m_MethodName: SetOwnerColor
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &4946607248905921636
 GameObject:
   m_ObjectHideFlags: 0
@@ -4516,7 +4518,7 @@ GameObject:
   - component: {fileID: 6140679087160541349}
   - component: {fileID: 6140679087160541348}
   m_Layer: 0
-  m_Name: OwnerMarker
+  m_Name: OwnerView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5457,6 +5459,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 4694811551435739266}
   m_maskType: 0
+  _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
 --- !u!23 &7765418482444957144

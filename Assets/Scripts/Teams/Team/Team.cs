@@ -2,15 +2,12 @@ using UnityEngine;
 
 public class Team : MonoBehaviour, IOwner
 {
-    [SerializeField] private Tile[] _startingTiles;
+    [SerializeField] private Tile[] _tiles;
     [SerializeField] private Color _color;
-
-    private Land _land;
-
     [field: SerializeField] public TeamParameters Parameters { get; private set; }
 
-    public Land Land => _land;
-
+    public Land Land { get; private set; } 
+   
     public Color Color
     { 
         get
@@ -26,13 +23,13 @@ public class Team : MonoBehaviour, IOwner
 
     private void InizializeLand()
     {
-        if (_startingTiles != null && _startingTiles.Length != 0)
+        if (_tiles != null && _tiles.Length != 0)
         {
-            _land = new Land(this, _startingTiles);
+            Land = new Land(this, _tiles);
         }
         else
         {
-            _land = new Land(this);
+            Land = new Land(this);
         }
     }
 }

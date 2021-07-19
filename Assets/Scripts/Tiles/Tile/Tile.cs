@@ -1,38 +1,37 @@
 using UnityEngine;
-using UnityEngine.Events;
 using System.Collections.Generic;
 
 public class Tile : MonoBehaviour, IPopulated, IOwned
 {
-    [field: SerializeField] public Population Population { get; set; }
-    [field: SerializeField] public Environment Enviroment { get; private set; }
-    [field: SerializeField] public List<Tile> Neighbors { get; set; }
+    private OwnerView _ownerView;
+    private PopulationView _populationView;
 
-    [SerializeField] private UnityEvent<IOwner> OwnerChanged;
+    [SerializeField] private float _startingPopulation;
+
+    [field: SerializeField] public float Fertility { get; private set; }
+    [field: SerializeField] public float IllnesRate { get; private set; }
+    [field: SerializeField] public List<Tile> Neighbors { get; private set; }
+
+    public Population Population { get; private set; }
 
     private IOwner _owner;
 
     public IOwner Owner
     {
-        get
-        {
-            return _owner;
-        }
-
+        get => _owner;
         set
         {
             _owner = value;
-            OwnerChanged.Invoke(_owner);
+            _ownerView.SetOwner(value);
         }
     }
 
-    private void Start()
+    private void Awake()
     {
-        Owner = new NullOwner();
-    }
+        _ownerView = GetComponent
 
-    private void CallOwnerChanged(IOwner owner)
-    {
-        if (OwnerChanged != null) OwnerChanged.Invoke(owner);
+        Population = new Population(_startingPopulation);
+        Population.PopulationChanged += _populationView.SetPopulation;
+        Owner = new NullOwner();
     }  
 }

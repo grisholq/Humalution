@@ -1,4 +1,4 @@
 public interface IPopulated 
 {
-    Population Population { get; set; }
+    Population Population { get; }
 }

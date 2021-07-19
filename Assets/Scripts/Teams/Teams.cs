@@ -3,16 +3,14 @@ using System.Collections.Generic;
 
 public class Teams : MonoBehaviour
 {
-    [SerializeField] private Transform _teamsParent;
     private List<Team> _teams;
 
     private void Awake()
     {
-        Team[] teams = _teamsParent.GetComponentsInChildren<Team>();
-        _teams = new List<Team>(teams);
+        _teams = new List<Team>(transform.GetComponentsInChildren<Team>());
     }
 
-    public List<Team> GetTeamsList()
+    public List<Team> GetTeams()
     {
         return _teams;
     }
