@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+using UnityEngine;
+using System.Collections.Generic;
 
 public static class ListExtentions
 {
-    public static T Random<T>(this List<T> list)
-    {
-        return list[UnityEngine.Random.Range(0, list.Count)];
+    public static T RandomElement<T>(this List<T> list)
+    {        
+        return list[Random.Range(0, list.Count)];
     }
 }
